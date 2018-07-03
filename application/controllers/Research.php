@@ -89,7 +89,7 @@ class Research extends CI_Controller {
 				
 				
 				$this->system_model->insert_system ($data);
-				header ('Location: '.base_url('list_system'));
+				header ('Location: '.base_url(''));
 				exit;
 
 
@@ -119,8 +119,16 @@ class Research extends CI_Controller {
 		
 		$id = $this->input->get('id');
 		
-		$this->system_model->delete_system ($id);
+		alert ($id);
 		
-		header ('Location: '.base_url ().'');
+		if($this->system_model->delete_system ($id))
+		{
+			$system_data['building'] = $this->system_model->get_systems();
+			$system_data['states'] = $this->system_model->get_state();
+			 
+			$this->load->view ('components/header');
+			$this->load->view ('list_system', $system_data);
+			$this->load->view ('components/footer');
+		}
 	} 
 }

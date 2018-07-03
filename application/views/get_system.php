@@ -194,7 +194,9 @@
 	{
 		if (confirm('Are You Sure to Delete this Record?'))
 		{
+			alert("here");
 			window.location.href = 'delete_system?id=' + uid;
+			alert(uid);
 		}
 	}
 
